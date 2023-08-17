@@ -18,3 +18,66 @@ header {
 header h1 {  
     margin-top: 0;
 }
+
+#players-configurations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.player-container{
+    background-color: rgb(237, 221, 252);
+    margin: 1rem 1rem;
+    width: 25%;
+    padding: 1rem 2rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+.player-container p {
+    font-weight: bold;
+}
+
+.player-container button {
+    font: inherit;
+    font-size: 1.2rem;
+    background-color: transparent;
+    color: rgb(137, 87, 236);
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+}
+
+.player-container button:hover {
+    background-color: rgb(222, 194, 251);
+}
+
+.player-name {
+    color: rgb(84, 32, 157);
+    font-weight: bolder;
+    position: relative;
+}
+
+.symbol {
+    font-size: 2.5rem;
+    color: rgb(38, 38, 38);
+}
+
+#start button{
+    display: block;
+    margin: 1rem auto;
+    font: inherit;
+    font-size: 1.2rem;
+    background-color: var(--color-primary-500);
+    color: rgb(233, 225, 250);
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 2rem;
+    cursor: pointer; 
+}
+
+#start button:hover {
+    background-color: rgb(143, 74, 247);
+}
