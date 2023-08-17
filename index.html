@@ -40,10 +40,20 @@
     </header>
     <main>
       <section id="players-configurations">
-        <div id="player1"></div>
-        <div id="player2"></div>
-        <div id="start"></div>
+        <div id="player1" class="player-container">
+          <h2>Player 1</h2>
+          <p class="player-name"></p>
+          <p id="x-symbol">X</p>
+          <button>Edit</button>
+        </div>
+        <div id="player2" class="player-container">
+          <h2>Player 2</h2>
+          <p id="player-name"></p>
+          <p id="y-symbol">Y</p>
+          <button>Edit</button>
+        </div>
       </section>
+      <div id="start"><button>Start New Game</button></div>
       <section id="overlay"></section>
       <section id="game-result"></section>
       <section id="gameplay"></section>
