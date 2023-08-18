@@ -57,6 +57,7 @@ header h1 {
 .player-name {
   color: rgb(84, 32, 157);
   font-weight: bolder;
+  font-size: 2rem;
   position: relative;
 }
 
@@ -131,7 +132,7 @@ header h1 {
 }
 
 #overlay #cancel:hover {
-    background-color: rgb(207, 206, 209);
+    background-color: rgb(237, 221, 252);
 }
 
 #start button {
