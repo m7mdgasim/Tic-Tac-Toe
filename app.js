@@ -59,16 +59,24 @@ let turn = "playerX";
 for (place of gamePlaces) {
   function played(event) {
     event.target.style.backgroundColor = "rgb(130, 44, 255)";
-    if (turn == "playerX") {
-      event.target.innerText = "X";
-      turn = "playerO";
-      whosTurnIsIt.innerHTML =
-  `It's <strong id="player-turn">` + player2Name.innerText + " </strong> turn";
+    let notOccupied = event.target.innerText == "";
+    if (!notOccupied) {
     } else {
-      event.target.innerText = "O";
-      turn = "playerX";
-      whosTurnIsIt.innerHTML =
-  `It's <strong id="player-turn">` + player1Name.innerText + " </strong> turn";
+      if (turn == "playerX") {
+        event.target.innerText = "X";
+        turn = "playerO";
+        whosTurnIsIt.innerHTML =
+          `It's <strong id="player-turn">` +
+          player2Name.innerText +
+          " </strong> turn";
+      } else {
+        event.target.innerText = "O";
+        turn = "playerX";
+        whosTurnIsIt.innerHTML =
+          `It's <strong id="player-turn">` +
+          player1Name.innerText +
+          " </strong> turn";
+      }
     }
   }
 
