@@ -44,7 +44,7 @@ Feel free to customize the game's appearance and behavior by modifying the CSS a
 This project was inspired by the classic Tic-Tac-Toe game and built as a learning exercise in web development. 
 ### Contact
 
-If you have any questions, suggestions, or feedback, feel free to reach out to us at m.g.majzoub@gmail.com.
+If you have any questions, suggestions, or feedback, feel free to reach out to me at m.g.majzoub@gmail.com.
 
 I hope you have a fantastic time playing the Tic-Tac-Toe game!
 
