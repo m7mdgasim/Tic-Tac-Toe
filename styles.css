@@ -154,6 +154,7 @@ header h1 {
 
 #gameplay {
   display: none;
+  /* width: fit-content; */
   margin-top: 4rem;
 }
 
@@ -191,6 +192,28 @@ header h1 {
 
 .game-place:hover {
   background-color: rgb(106, 41, 207);
+}
+
+@media (max-width: 48rem) {
+  #players-configurations {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .player-container{
+    width: 80%;
+  }
+  #overlay input {
+    width: 100%;
+  }
+  .game-place {
+    width: 7rem;
+    height: 7rem;
+  }
+  #gameplay {
+    margin-bottom: 8rem;
+  }
 }
 
 
