@@ -47,8 +47,34 @@ confirmButton.addEventListener("click", setplayername);
 
 // //GAMEPLAY FEATURE
 
+//START AND RESTART
+let gameStatus = "notStarted";
 const gamePlaces = document.querySelectorAll(".game-place");
+
+const startButtonElement = document.getElementById("start");
+const gamePlayground = document.getElementById("gameplay");
+
 const whosTurnIsIt = document.querySelector("#gameplay p");
+
+function resetGamePlayground() {
+  for (place of gamePlaces) {
+    place.classList.remove('played') ;
+    place.innerText = "";
+    whosTurnIsIt.innerHTML =
+      'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
+    turn = "playerX";
+  }
+}
+
+function startGame() {
+  gamePlayground.style.display = "block";
+  startButtonElement.innerHTML = '<a href="#gameplay">Reset The Game Board</a>';
+  gameStatus = "started";
+  startButtonElement.removeEventListener("click", startGame);
+  startButtonElement.addEventListener("click", resetGamePlayground);
+}
+
+startButtonElement.addEventListener("click", startGame);
 
 whosTurnIsIt.innerHTML =
   'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
@@ -58,10 +84,10 @@ let turn = "playerX";
 // turn-based gameplay
 for (place of gamePlaces) {
   function played(event) {
-    event.target.style.backgroundColor = "rgb(130, 44, 255)";
+    event.target.classList.add('played');
     let notOccupied = event.target.innerText == "";
-    if (!notOccupied) {
-    } else {
+    // // checking if the place occupied or not
+    if (notOccupied) {
       if (turn == "playerX") {
         event.target.innerText = "X";
         turn = "playerO";
@@ -77,6 +103,7 @@ for (place of gamePlaces) {
           player1Name.innerText +
           " </strong> turn";
       }
+    } else {
     }
   }
 

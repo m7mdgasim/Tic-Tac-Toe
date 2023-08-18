@@ -135,25 +135,25 @@ header h1 {
     background-color: rgb(237, 221, 252);
 }
 
-#start button {
+#start a {
   display: block;
+  width: fit-content;
   margin: 1rem auto;
-  font: inherit;
+  text-decoration: none;
   font-size: 1.2rem;
   background-color: var(--color-primary-500);
   color: rgb(233, 225, 250);
-  border: none;
   border-radius: 8px;
   padding: 0.7rem 2rem;
   cursor: pointer;
 }
 
-#start button:hover {
+#start a:hover {
   background-color: rgb(143, 74, 247);
 }
 
 #gameplay {
-  /* display: none; */
+  display: none;
   margin-top: 4rem;
 }
 
@@ -183,6 +183,10 @@ header h1 {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
+}
+
+.game-place.played {
+  background-color: rgb(130, 44, 255)
 }
 
 .game-place:hover {
