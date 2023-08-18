@@ -1,3 +1,5 @@
+// //PLAYER NAME COFIGURATION FEATURE
+
 // Selecting both of player names and editing buttons
 const player1Name = document.querySelector("#player1 h2");
 const player1EditButtonElement = document.querySelector("#player1 button");
@@ -12,7 +14,7 @@ const confirmButton = document.getElementById("confirm");
 
 //to show specific player name as default value when trying to configure first player name
 function changePlayer1Name() {
-  playerNameInputElement.value = player1Name.innerText; 
+  playerNameInputElement.value = player1Name.innerText;
   playerNameInputElement.name = "player1name";
   playerConfigOverlay.style.display = "block";
 }
@@ -25,7 +27,6 @@ function changePlayer2Name() {
   playerConfigOverlay.style.display = "block";
 }
 player2EditButtonElement.addEventListener("click", changePlayer2Name);
-
 
 function closePlayerConfigOverlay() {
   playerConfigOverlay.style.display = "none";
@@ -44,3 +45,32 @@ function setplayername() {
 }
 confirmButton.addEventListener("click", setplayername);
 
+// //GAMEPLAY FEATURE
+
+const gamePlaces = document.querySelectorAll(".game-place");
+const whosTurnIsIt = document.querySelector("#gameplay p");
+
+whosTurnIsIt.innerHTML =
+  'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
+
+let turn = "playerX";
+
+// turn-based gameplay
+for (place of gamePlaces) {
+  function played(event) {
+    event.target.style.backgroundColor = "rgb(130, 44, 255)";
+    if (turn == "playerX") {
+      event.target.innerText = "X";
+      turn = "playerO";
+      whosTurnIsIt.innerHTML =
+  `It's <strong id="player-turn">` + player2Name.innerText + " </strong> turn";
+    } else {
+      event.target.innerText = "O";
+      turn = "playerX";
+      whosTurnIsIt.innerHTML =
+  `It's <strong id="player-turn">` + player1Name.innerText + " </strong> turn";
+    }
+  }
+
+  place.addEventListener("click", played);
+}

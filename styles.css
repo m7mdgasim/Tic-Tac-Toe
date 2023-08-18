@@ -153,7 +153,7 @@ header h1 {
 }
 
 #gameplay {
-  display: none;
+  /* display: none; */
   margin-top: 4rem;
 }
 
@@ -171,13 +171,22 @@ header h1 {
   gap: 10px;
 }
 .game-place {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(207, 181, 246);
+  color: white;
   width: 10rem;
   height: 10rem;
   border-radius: 6px;
+  font-size: 6rem;
+  font-weight: bold;
+  text-align: center;
   cursor: pointer;
 }
 
 .game-place:hover {
   background-color: rgb(106, 41, 207);
 }
+
+
