@@ -67,72 +67,72 @@ header h1 {
 }
 
 #overlay {
-    display: none;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.4);
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    text-align: center;
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
 }
 
 #overlay form {
-    background-color: rgb(251, 250, 252);
-    width: 50%;
-    margin: 20rem auto;
-    padding: 1rem 3rem;
-    border-radius: 8px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-    text-align: center;
+  background-color: rgb(251, 250, 252);
+  width: 50%;
+  margin: 20rem auto;
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 #overlay h2 {
-    margin: 0 auto 1rem auto;
-    padding: 0;
+  margin: 0 auto 1rem auto;
+  padding: 0;
 }
-
 
 #overlay input {
-    color: rgb(84, 32, 157);
-    font: inherit;
-    font-weight: bolder;
-    font-size: 1.5rem;
-    position: relative;
-    border: none;
-    text-align: center;
-    display: block;
-    margin: 1rem auto;
+  color: rgb(84, 32, 157);
+  background-color: rgb(251, 250, 252);
+  font: inherit;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  position: relative;
+  border: none;
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
 }
 
-#overlay input:focus-visible, #overlay input:focus {
-    border: none;
-    outline: 0;
+#overlay input:focus-visible,
+#overlay input:focus {
+  border: none;
+  outline: 0;
 }
-
 
 #overlay button {
-    margin: 1rem auto;
-    font: inherit;
-    font-size: 1rem;
-    background-color: var(--color-primary-500);
-    color: rgb(233, 225, 250);
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1.5rem;
-    cursor: pointer;
+  margin: 1rem auto;
+  font: inherit;
+  font-size: 1rem;
+  background-color: var(--color-primary-500);
+  color: rgb(233, 225, 250);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
 }
 #overlay button:hover {
-    background-color: rgb(143, 74, 247);
+  background-color: rgb(143, 74, 247);
 }
 
 #overlay #cancel {
-    color: var(--color-primary-500);
-    background-color: rgb(251, 250, 252);
+  color: var(--color-primary-500);
+  background-color: rgb(251, 250, 252);
 }
 
 #overlay #cancel:hover {
-    background-color: rgb(237, 221, 252);
+  background-color: rgb(237, 221, 252);
 }
 
 #start a {
@@ -187,11 +187,75 @@ header h1 {
 }
 
 .game-place.played {
-  background-color: rgb(130, 44, 255)
+  background-color: rgb(130, 44, 255);
 }
 
 .game-place:hover {
   background-color: rgb(106, 41, 207);
+}
+
+#game-result {
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+#results {
+  background-color: rgb(54, 26, 90);
+  width: 50%;
+  margin: 20rem auto;
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+#results h2 {
+  font-size: 2rem;
+  color: rgb(220, 220, 220);
+}
+
+#results p {
+  font-size: 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+#next-game {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#next-game button {
+  margin: 1rem auto;
+  font: inherit;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+
+#next-game button:hover {
+  background-color: rgb(143, 74, 247);
+}
+
+#rematch {
+  color: rgb(233, 225, 250);
+  background-color: rgb(54, 26, 90);
+}
+
+#config:hover {
+  color: white;
 }
 
 @media (max-width: 48rem) {
@@ -201,7 +265,7 @@ header h1 {
     justify-content: center;
     align-items: center;
   }
-  .player-container{
+  .player-container {
     width: 80%;
   }
   #overlay input {
@@ -214,6 +278,11 @@ header h1 {
   #gameplay {
     margin-bottom: 8rem;
   }
+  #results {
+    margin-top: 10rem;
+    width: 15rem;
+  }
+  #results p {
+  justify-content: space-between;
+  }
 }
-
-

@@ -56,6 +56,10 @@ const gamePlayground = document.getElementById("gameplay");
 
 const whosTurnIsIt = document.querySelector("#gameplay p");
 
+let player1score = 0;
+
+let player2score = 0;
+
 function resetGamePlayground() {
   for (place of gamePlaces) {
     place.classList.remove("played");
@@ -77,9 +81,27 @@ function startGame() {
   gameStatus = "started";
   startButtonElement.removeEventListener("click", startGame);
   startButtonElement.addEventListener("click", resetGamePlayground);
+  player1score = 0;
+  player2score = 0;
 }
 
 startButtonElement.addEventListener("click", startGame);
+
+function player1win() {
+  player1ResultElement.innerText = player1Name.innerText;
+  player2ResultElement.innerText = player2Name.innerText;
+  congratsPlayer.innerText = player1Name.textContent;
+  player1score = player1score + 1;
+  resultBoardElement.innerText = player1score + " : " + player2score;
+}
+
+function player2win() {
+  player1ResultElement.innerText = player1Name.innerText;
+  player2ResultElement.innerText = player2Name.innerText;
+  congratsPlayer.innerText = player2Name.textContent;
+  player2score = player2score + 1;
+  resultBoardElement.innerText = player1score + " : " + player2score;
+}
 
 let playgroundMatrix = [
   [1, 2, 3],
@@ -110,7 +132,19 @@ function checkWin(matrix, turn) {
       array.push(matrix[i][j]);
     }
     if (new Set(array).size === 1) {
-      console.log("We Have A Winner! in column " + j + " congrats " + turn);
+      if (turn == "playerX") {
+        gameResults.style.display = "block";
+        player1win();
+        console.log(
+          "We Have A Winner! in  the main diagonal, congrats " + turn
+        );
+      } else {
+        gameResults.style.display = "block";
+        player2win();
+        console.log(
+          "We Have A Winner! in  the main diagonal, congrats " + turn
+        );
+      }
     }
   }
   for (i of [0, 1, 2]) {
@@ -119,7 +153,19 @@ function checkWin(matrix, turn) {
       array.push(matrix[i][j]);
     }
     if (new Set(array).size === 1) {
-      console.log("We Have A Winner! in row " + i + " congrats " + turn);
+      if (turn == "playerX") {
+        gameResults.style.display = "block";
+        player1win();
+        console.log(
+          "We Have A Winner! in  the main diagonal, congrats " + turn
+        );
+      } else {
+        gameResults.style.display = "block";
+        player2win();
+        console.log(
+          "We Have A Winner! in  the main diagonal, congrats " + turn
+        );
+      }
     }
   }
   let array = [];
@@ -127,11 +173,27 @@ function checkWin(matrix, turn) {
     array.push(matrix[i][i]);
   }
   if (new Set(array).size === 1) {
-    console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
+    if (turn == "playerX") {
+      gameResults.style.display = "block";
+      player1win();
+      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
+    } else {
+      gameResults.style.display = "block";
+      player2win();
+      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
+    }
   }
   array = [matrix[0][2], matrix[1][1], matrix[2][0]];
   if (new Set(array).size === 1) {
-    console.log("We Have A Winner! in  the secondary diagonal, congrats " + turn);
+    if (turn == "playerX") {
+      gameResults.style.display = "block";
+      player1win();
+      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
+    } else {
+      gameResults.style.display = "block";
+      player2win();
+      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
+    }
   }
 }
 
@@ -179,3 +241,22 @@ for (place of gamePlaces) {
 
   place.addEventListener("click", played);
 }
+
+// //GAME RESULTS
+// showing players names in result
+const player1ResultElement = document.getElementById("player-x");
+const player2ResultElement = document.getElementById("player-o");
+const gameResults = document.getElementById("game-result");
+
+const congratsPlayer = document.getElementById("winner-name");
+
+const resultBoardElement = document.getElementById("result");
+
+const rematchButton = document.getElementById("rematch");
+
+function rematch() {
+  resetGamePlayground();
+  gameResults.style.display = "none";
+}
+
+rematchButton.addEventListener("click", rematch);

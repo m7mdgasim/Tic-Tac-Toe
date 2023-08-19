@@ -41,14 +41,14 @@
     <main>
       <section id="players-configurations">
         <div id="player1" class="player-container">
-          <p>Player 1</p>
-          <h2 class="player-name">Gasim</h2>
+          <p>First Player</p>
+          <h2 class="player-name">Player 1</h2>
           <p class="symbol">X</p>
           <button>Edit</button>
         </div>
         <div id="player2" class="player-container">
-          <p>Player 2</p>
-          <h2 class="player-name">Ali</h2>
+          <p>Second Player</p>
+          <h2 class="player-name">Player 2</h2>
           <p class="symbol">O</p>
           <button>Edit</button>
         </div>
@@ -56,7 +56,12 @@
       <section id="overlay">
         <form>
           <h2>Choose Your Name</h2>
-          <input type="text" name="playername" id="player-name" value="Player Name">
+          <input
+            type="text"
+            name="playername"
+            id="player-name"
+            value="Player Name"
+          />
           <div id="buttons">
             <button type="button" id="cancel">Cancel</button>
             <button type="button" id="confirm">Confirm</button>
@@ -64,20 +69,34 @@
         </form>
       </section>
       <div id="start"><a href="#gameplay">Start New Game</a></div>
-      <section id="game-result"></section>
       <section id="gameplay">
         <p id="turn">Start <strong id="player-turn">player1</strong></p>
         <ul id="playground">
-        <div class="game-place" id="1"></div>
-        <div class="game-place" id="2"></div>
-        <div class="game-place" id="3"></div>
-        <div class="game-place" id="4"></div>
-        <div class="game-place" id="5"></div>
-        <div class="game-place" id="6"></div>
-        <div class="game-place" id="7"></div>
-        <div class="game-place" id="8"></div>
-        <div class="game-place" id="9"></div>
-      </ul>
+          <div class="game-place" id="1"></div>
+          <div class="game-place" id="2"></div>
+          <div class="game-place" id="3"></div>
+          <div class="game-place" id="4"></div>
+          <div class="game-place" id="5"></div>
+          <div class="game-place" id="6"></div>
+          <div class="game-place" id="7"></div>
+          <div class="game-place" id="8"></div>
+          <div class="game-place" id="9"></div>
+        </ul>
+      </section>
+      <section id="game-result">
+        <div id="results">
+          <h2>You Won, <span id="winner-name"></span></h2>
+          <p>
+            <span id="player-x"></span><span id="result"> : </span
+            ><span id="player-o"></span>
+          </p>
+          <ul id="next-game">
+            <li>
+              <button id="rematch">Rematch</button>
+              <a href="/"><button id="config" href="/">Change Players</button></a>
+            </li>
+          </ul>
+        </div>
       </section>
     </main>
   </body>
