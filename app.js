@@ -102,6 +102,39 @@ function addingToMatrix(placeNumber, player) {
   }
 }
 
+// To Check if there is a winner
+function checkWin(matrix, turn) {
+  for (j of [0, 1, 2]) {
+    let array = [];
+    for (i of [0, 1, 2]) {
+      array.push(matrix[i][j]);
+    }
+    if (new Set(array).size === 1) {
+      console.log("We Have A Winner! in column " + j + " congrats " + turn);
+    }
+  }
+  for (i of [0, 1, 2]) {
+    let array = [];
+    for (j of [0, 1, 2]) {
+      array.push(matrix[i][j]);
+    }
+    if (new Set(array).size === 1) {
+      console.log("We Have A Winner! in row " + i + " congrats " + turn);
+    }
+  }
+  let array = [];
+  for (i of [0, 1, 2]) {
+    array.push(matrix[i][i]);
+  }
+  if (new Set(array).size === 1) {
+    console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
+  }
+  array = [matrix[0][2], matrix[1][1], matrix[2][0]];
+  if (new Set(array).size === 1) {
+    console.log("We Have A Winner! in  the secondary diagonal, congrats " + turn);
+  }
+}
+
 whosTurnIsIt.innerHTML =
   'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
 
@@ -118,8 +151,8 @@ for (place of gamePlaces) {
       if (turn == "playerX") {
         let placeNumber = event.target.id;
         addingToMatrix(placeNumber, turn);
-
         event.target.innerText = "X";
+        checkWin(playgroundMatrix, turn);
 
         turn = "playerO";
 
@@ -130,11 +163,11 @@ for (place of gamePlaces) {
       } else {
         let placeNumber = event.target.id;
         addingToMatrix(placeNumber, turn);
-
         event.target.innerText = "O";
+        checkWin(playgroundMatrix, turn);
 
         turn = "playerX";
-        
+
         whosTurnIsIt.innerHTML =
           `It's <strong id="player-turn">` +
           player1Name.innerText +
