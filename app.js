@@ -58,12 +58,17 @@ const whosTurnIsIt = document.querySelector("#gameplay p");
 
 function resetGamePlayground() {
   for (place of gamePlaces) {
-    place.classList.remove('played') ;
+    place.classList.remove("played");
     place.innerText = "";
     whosTurnIsIt.innerHTML =
       'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
     turn = "playerX";
   }
+  playgroundMatrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ];
 }
 
 function startGame() {
@@ -76,6 +81,27 @@ function startGame() {
 
 startButtonElement.addEventListener("click", startGame);
 
+let playgroundMatrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+// adding the played place to the playground matrix to use it later to check if there is a winner
+function addingToMatrix(placeNumber, player) {
+  for (i in playgroundMatrix) {
+    for (j in playgroundMatrix[i]) {
+      if (placeNumber == playgroundMatrix[i][j]) {
+        if (player == "playerX") {
+          playgroundMatrix[i][j] = "x";
+        } else {
+          playgroundMatrix[i][j] = "o";
+        }
+      }
+    }
+  }
+}
+
 whosTurnIsIt.innerHTML =
   'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
 
@@ -84,20 +110,31 @@ let turn = "playerX";
 // turn-based gameplay
 for (place of gamePlaces) {
   function played(event) {
-    event.target.classList.add('played');
+    event.target.classList.add("played");
     let notOccupied = event.target.innerText == "";
-    // // checking if the place occupied or not
+
+    // checking if the place occupied or not then decide to change the place
     if (notOccupied) {
       if (turn == "playerX") {
+        let placeNumber = event.target.id;
+        addingToMatrix(placeNumber, turn);
+
         event.target.innerText = "X";
+
         turn = "playerO";
+
         whosTurnIsIt.innerHTML =
           `It's <strong id="player-turn">` +
           player2Name.innerText +
           " </strong> turn";
       } else {
+        let placeNumber = event.target.id;
+        addingToMatrix(placeNumber, turn);
+
         event.target.innerText = "O";
+
         turn = "playerX";
+        
         whosTurnIsIt.innerHTML =
           `It's <strong id="player-turn">` +
           player1Name.innerText +
