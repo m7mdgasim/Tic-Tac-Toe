@@ -258,6 +258,7 @@ header h1 {
   color: white;
 }
 
+
 @media (max-width: 48rem) {
   #players-configurations {
     display: flex;
@@ -279,10 +280,11 @@ header h1 {
     margin-bottom: 8rem;
   }
   #results {
-    margin-top: 10rem;
+    margin-top: 7rem;
     width: 15rem;
   }
   #results p {
+    flex-direction: column;
   justify-content: space-between;
   }
 }

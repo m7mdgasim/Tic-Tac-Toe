@@ -28,10 +28,10 @@ function changePlayer2Name() {
 }
 player2EditButtonElement.addEventListener("click", changePlayer2Name);
 
+// Closing the configuring overlay with no changes
 function closePlayerConfigOverlay() {
   playerConfigOverlay.style.display = "none";
 }
-
 cancelButton.addEventListener("click", closePlayerConfigOverlay);
 
 //setting player name taking which player has pressed edit in respect
@@ -48,7 +48,6 @@ confirmButton.addEventListener("click", setplayername);
 // //GAMEPLAY FEATURE
 
 //START AND RESTART
-let gameStatus = "notStarted";
 const gamePlaces = document.querySelectorAll(".game-place");
 
 const startButtonElement = document.getElementById("start");
@@ -57,7 +56,6 @@ const gamePlayground = document.getElementById("gameplay");
 const whosTurnIsIt = document.querySelector("#gameplay p");
 
 let player1score = 0;
-
 let player2score = 0;
 
 function resetGamePlayground() {
@@ -67,6 +65,7 @@ function resetGamePlayground() {
     whosTurnIsIt.innerHTML =
       'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
     turn = "playerX";
+    turnNumber = 0;
   }
   playgroundMatrix = [
     [1, 2, 3],
@@ -75,33 +74,92 @@ function resetGamePlayground() {
   ];
 }
 
+// Starting the gamme with showing the playground and changing the button to reset and reseting players score
 function startGame() {
   gamePlayground.style.display = "block";
   startButtonElement.innerHTML = '<a href="#gameplay">Reset The Game Board</a>';
-  gameStatus = "started";
   startButtonElement.removeEventListener("click", startGame);
   startButtonElement.addEventListener("click", resetGamePlayground);
+  whosTurnIsIt.innerHTML =
+  'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
   player1score = 0;
   player2score = 0;
 }
-
 startButtonElement.addEventListener("click", startGame);
 
-function player1win() {
+
+
+// winner decider and score adder
+const winParagaphElement = document.getElementById('win');
+
+function playerWin(playerTurn) {
   player1ResultElement.innerText = player1Name.innerText;
   player2ResultElement.innerText = player2Name.innerText;
-  congratsPlayer.innerText = player1Name.textContent;
-  player1score = player1score + 1;
-  resultBoardElement.innerText = player1score + " : " + player2score;
+  if (playerTurn == "playerX" ){
+    winParagaphElement.innerHTML= 'You Won, ' + player1Name.innerText;
+    player1score = player1score + 1;
+  } else {
+    winParagaphElement.innerHTML= 'You Won, ' + player2Name.innerText;
+    player2score = player2score + 1;
+  }
+
+resultBoardElement.innerText = player1score + " : " + player2score;
+gameResults.style.display = "block";
 }
 
-function player2win() {
+
+function draw(){
+  winParagaphElement.innerHTML = `What A Match! Ended With <span style='text-decoration: underline
+  '>Draw</span>, Scores Stay The Same`;
   player1ResultElement.innerText = player1Name.innerText;
   player2ResultElement.innerText = player2Name.innerText;
-  congratsPlayer.innerText = player2Name.textContent;
-  player2score = player2score + 1;
   resultBoardElement.innerText = player1score + " : " + player2score;
+  gameResults.style.display = "block";
 }
+
+
+// To Check if there is a winner
+function checkWin(matrix, turn) {
+  let countingArray =[0,1,2]
+  //draw checking
+  if (turnNumber == 9){
+    draw();
+  }
+  // Vertical Checking
+  for (j of countingArray) {
+    let array = [];
+    for (i of countingArray) {
+      array.push(matrix[i][j]);
+    }
+    if (new Set(array).size === 1) {
+      playerWin(turn);
+    }
+  }
+  // Horizental Checking
+  for (i of countingArray) {
+    let array = [];
+    for (j of countingArray) {
+      array.push(matrix[i][j]);
+    }
+    if (new Set(array).size === 1) {
+      playerWin(turn);
+    }
+  }
+  // main diagonal checking
+  let array = [];
+  for (i of countingArray) {
+    array.push(matrix[i][i]);
+  }
+  if (new Set(array).size === 1) {
+    playerWin(turn);
+  }
+  // second diagonal checking
+  array = [matrix[0][2], matrix[1][1], matrix[2][0]];
+  if (new Set(array).size === 1) {
+    playerWin(turn);
+  }
+}
+
 
 let playgroundMatrix = [
   [1, 2, 3],
@@ -124,100 +182,24 @@ function addingToMatrix(placeNumber, player) {
   }
 }
 
-// To Check if there is a winner
-function checkWin(matrix, turn) {
-  for (j of [0, 1, 2]) {
-    let array = [];
-    for (i of [0, 1, 2]) {
-      array.push(matrix[i][j]);
-    }
-    if (new Set(array).size === 1) {
-      if (turn == "playerX") {
-        gameResults.style.display = "block";
-        player1win();
-        console.log(
-          "We Have A Winner! in  the main diagonal, congrats " + turn
-        );
-      } else {
-        gameResults.style.display = "block";
-        player2win();
-        console.log(
-          "We Have A Winner! in  the main diagonal, congrats " + turn
-        );
-      }
-    }
-  }
-  for (i of [0, 1, 2]) {
-    let array = [];
-    for (j of [0, 1, 2]) {
-      array.push(matrix[i][j]);
-    }
-    if (new Set(array).size === 1) {
-      if (turn == "playerX") {
-        gameResults.style.display = "block";
-        player1win();
-        console.log(
-          "We Have A Winner! in  the main diagonal, congrats " + turn
-        );
-      } else {
-        gameResults.style.display = "block";
-        player2win();
-        console.log(
-          "We Have A Winner! in  the main diagonal, congrats " + turn
-        );
-      }
-    }
-  }
-  let array = [];
-  for (i of [0, 1, 2]) {
-    array.push(matrix[i][i]);
-  }
-  if (new Set(array).size === 1) {
-    if (turn == "playerX") {
-      gameResults.style.display = "block";
-      player1win();
-      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
-    } else {
-      gameResults.style.display = "block";
-      player2win();
-      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
-    }
-  }
-  array = [matrix[0][2], matrix[1][1], matrix[2][0]];
-  if (new Set(array).size === 1) {
-    if (turn == "playerX") {
-      gameResults.style.display = "block";
-      player1win();
-      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
-    } else {
-      gameResults.style.display = "block";
-      player2win();
-      console.log("We Have A Winner! in  the main diagonal, congrats " + turn);
-    }
-  }
-}
-
-whosTurnIsIt.innerHTML =
-  'Start <strong id="player-turn">' + player1Name.innerText + "</strong>";
-
 let turn = "playerX";
 
 // turn-based gameplay
-for (place of gamePlaces) {
+let turnNumber = 0;
+  for (place of gamePlaces) {
   function played(event) {
-    event.target.classList.add("played");
+    event.target.classList.add("played"); //add style of played place
     let notOccupied = event.target.innerText == "";
-
     // checking if the place occupied or not then decide to change the place
     if (notOccupied) {
+      turnNumber++;
+      console.log(turnNumber)
       if (turn == "playerX") {
-        let placeNumber = event.target.id;
-        addingToMatrix(placeNumber, turn);
-        event.target.innerText = "X";
+        let placeNumber = event.target.id; //check which place is it
+        addingToMatrix(placeNumber, turn);  
+        event.target.innerText = "X"; //add X to selected place
         checkWin(playgroundMatrix, turn);
-
         turn = "playerO";
-
         whosTurnIsIt.innerHTML =
           `It's <strong id="player-turn">` +
           player2Name.innerText +
@@ -227,20 +209,23 @@ for (place of gamePlaces) {
         addingToMatrix(placeNumber, turn);
         event.target.innerText = "O";
         checkWin(playgroundMatrix, turn);
-
         turn = "playerX";
-
         whosTurnIsIt.innerHTML =
           `It's <strong id="player-turn">` +
           player1Name.innerText +
           " </strong> turn";
       }
     } else {
+      whosTurnIsIt.innerHTML =
+          `This is an <strong id="player-turn"> 
+          an occupied place, 
+          </strong> Choose another place`;
     }
   }
 
   place.addEventListener("click", played);
 }
+
 
 // //GAME RESULTS
 // showing players names in result
@@ -248,7 +233,6 @@ const player1ResultElement = document.getElementById("player-x");
 const player2ResultElement = document.getElementById("player-o");
 const gameResults = document.getElementById("game-result");
 
-const congratsPlayer = document.getElementById("winner-name");
 
 const resultBoardElement = document.getElementById("result");
 
